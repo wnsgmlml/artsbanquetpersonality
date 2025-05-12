@@ -472,7 +472,7 @@
       const answerBox = document.querySelector('.answerBox');
       const statusBar = document.querySelector('.statusBar');
       const infoContainer = document.getElementById('info-container');
-      const questionImage = document.getElementById('question-img'); // Get the image element
+      const questionImage = document.getElementById('questionImage'); // Get the image element
 
       
       qBox.innerHTML = questions[currentQuestion].question;
@@ -488,8 +488,9 @@
       } else {
         infoContainer.innerHTML = '';
       }
-
-      questionImage.src = `/img/Question${currentQuestion}.png`;
+      // update image source after each question
+      questionImage.src = `Question${currentQuestion}.png`;
+      questionImage.alt = `Question ${currentQuestion + 1} Illustration`;
 
       questions[currentQuestion].choices.forEach((choice, idx) => {
         const button = document.createElement('button');
