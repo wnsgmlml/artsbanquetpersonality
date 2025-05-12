@@ -171,8 +171,8 @@
     }
     
     .illustration-space {
-      width: 100%;
-      max-height: 180px;
+        width: 100%;
+      max-height: 784px;
       margin: 20px 0;
       display: flex;
       align-items: center;
@@ -183,9 +183,7 @@
 
     #questionImage {
       max-width: 100%; 
-      max-height: 180px; 
-      object-fit: contain;
-      border-radius: 8px;
+      height: auto; 
     }
     
     .info-box {
@@ -203,8 +201,7 @@
     
     .character-img {
       max-width: 100%;
-      max-height: 280px;
-      object-fit: contain;
+      height: auto;
       border-radius: 10px;
       margin-bottom: 15px;
     }
@@ -221,51 +218,6 @@
       margin-bottom: 20px;
       color: #888;
     }
-
-    /* Added fallbacks for missing images */
-    .image-fallback {
-      width: 100%;
-      height: 180px;
-      background-color: #f0e6ff;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #6a2ec7;
-      font-size: 1.2rem;
-    }
-
-    /* For all images - add error handling */
-    img {
-      display: block;
-    }
-
-    /* Responsive adjustments for small screens */
-    @media (max-width: 576px) {
-      .container {
-        padding: 20px 15px;
-      }
-      
-      h1 {
-        font-size: 2.2rem;
-      }
-      
-      .qBox {
-        font-size: 1.3rem;
-      }
-      
-      .illustration-space {
-        max-height: 150px;
-      }
-      
-      #questionImage {
-        max-height: 150px;
-      }
-      
-      .character-img {
-        max-height: 220px;
-      }
-    }
   </style>
 </head>
 
@@ -276,7 +228,7 @@
       <h1>Arts Banquet Personality Quiz</h1>
       <p id="intro">Discover which fairy tale character matches your Arts Banquet persona! Answer a few questions about how you'd experience the banquet and find out who you really are.</p>
       <div class="illustration-space">
-        <img src="/api/placeholder/300/120" alt="Arts Banquet Illustration" onerror="this.parentElement.innerHTML='<div class=\'image-fallback\'>Arts Banquet Illustration</div>'" />
+        <img src="/api/placeholder/300/120" alt="Arts Banquet Illustration" />
       </div>
       <button id="start-btn" class="btn btn-primary" onclick="begin()">Start Quiz</button>
     </section>
@@ -285,7 +237,7 @@
     <section id="qna" style="display: none;">
       <div class="qBox"></div>
       <div class="illustration-space">
-        <img id="questionImage" src="/api/placeholder/300/150" alt="Question Illustration" onerror="this.parentElement.innerHTML='<div class=\'image-fallback\'>Question Illustration</div>'" />
+        <img id="questionImage" src="placeholder.jpg" alt="Question Illustration" />
       </div>
       <div id="info-container"></div>
       <div class="answerBox"></div>
@@ -300,7 +252,7 @@
       <div class="character-title"></div>
       <div class="mbti-type"></div>
       <div id="resultImg">
-        <img class="character-img" src="/api/placeholder/300/300" alt="Character" onerror="this.parentElement.innerHTML='<div class=\'image-fallback\'>Character Image</div>'" />
+        <img class="character-img" src="/api/placeholder/300/300" alt="Character" />
       </div>
       <div class="resultDesc"></div>
       <button class="restart-btn" onclick="restartQuiz()">Take Quiz Again</button>
@@ -528,7 +480,8 @@
       const answerBox = document.querySelector('.answerBox');
       const statusBar = document.querySelector('.statusBar');
       const infoContainer = document.getElementById('info-container');
-      const questionImage = document.getElementById('questionImage');
+      const questionImage = document.getElementById('questionImage'); // Get the image element
+
       
       qBox.innerHTML = questions[currentQuestion].question;
       answerBox.innerHTML = '';
@@ -543,15 +496,9 @@
       } else {
         infoContainer.innerHTML = '';
       }
-      
-      // Use placeholder image for each question
-      questionImage.src = `/api/placeholder/${300 + currentQuestion}/${150 + currentQuestion}`;
-      questionImage.alt = `Question ${currentQuestion + 1} Illustration`;
-      
-      // Add error handling for image loading
-      questionImage.onerror = function() {
-        this.parentElement.innerHTML = `<div class='image-fallback'>Question ${currentQuestion + 1}</div>`;
-      };
+      // update image source after each question
+      questionImage.src = `./img/Question${currentQuestion}.png`;
+      questionImage.alt = `./img/Question ${currentQuestion + 1} Illustration`;
 
       questions[currentQuestion].choices.forEach((choice, idx) => {
         const button = document.createElement('button');
@@ -603,18 +550,12 @@
       const result = characterResults[resultType];
       
       document.querySelector('.character-title').innerText = result.character;
-      document.querySelector('.mbti-type').innerText = resultType;
       document.querySelector('.resultDesc').innerText = result.description;
       
       // Set character image
       const characterImg = document.querySelector('.character-img');
       characterImg.src = result.image;
       characterImg.alt = result.character;
-      
-      // Add error handling for result image
-      characterImg.onerror = function() {
-        this.parentElement.innerHTML = `<div class='image-fallback'>${result.character}</div>`;
-      };
     }
 
     // Restart the quiz
@@ -633,3 +574,6 @@
   </script>
 </body>
 </html>
+
+
+
