@@ -495,8 +495,8 @@
         infoContainer.innerHTML = '';
       }
       // update image source after each question
-      questionImage.src = `Question${currentQuestion}.jpg`;
-      questionImage.alt = `Question ${currentQuestion + 1} Illustration`;
+      questionImage.src = `./img/Question${currentQuestion}.jpg`;
+      questionImage.alt = `./img/Question ${currentQuestion + 1} Illustration`;
 
       questions[currentQuestion].choices.forEach((choice, idx) => {
         const button = document.createElement('button');
