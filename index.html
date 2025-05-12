@@ -29,7 +29,7 @@
     body {
       font-family: 'Skranji', cursive;
       background-color: #f5f0ff;
-      background-image: url("https://img.freepik.com/free-vector/gentle-pattern-with-bluebell-flowers_1191-1192.jpg?t=st=1747008549~exp=1747012149~hmac=61244239438d46620f9bdd70fd82c21972dcdd017e9da44c14820f55dea38ce2&w=1380");
+      background-image: url("https://pub-static.fotor.com/assets/bg/247d99f6-6217-4573-8ade-ce8043170fcd.jpg");
     }
     
     .container {
@@ -218,7 +218,7 @@
     <!-- Main screen -->
     <section id="main">
       <h1>Arts Banquet Personality Quiz</h1>
-      <p id="intro">Discover which fictional character matches your Arts Banquet persona! Answer a few questions about how you'd experience the banquet and find out who you really are.</p>
+      <p id="intro">Discover which fairy tale character matches your Arts Banquet persona! Answer a few questions about how you'd experience the banquet and find out who you really are.</p>
       <div class="illustration-space">
         <img src="/api/placeholder/300/120" alt="Arts Banquet Illustration" />
       </div>
@@ -472,6 +472,8 @@
       const answerBox = document.querySelector('.answerBox');
       const statusBar = document.querySelector('.statusBar');
       const infoContainer = document.getElementById('info-container');
+      const questionImage = document.getElementById('question-img'); // Get the image element
+
       
       qBox.innerHTML = questions[currentQuestion].question;
       answerBox.innerHTML = '';
@@ -486,7 +488,9 @@
       } else {
         infoContainer.innerHTML = '';
       }
-      
+
+      questionImage.src = `/img/Question${currentQuestion}.png`;
+
       questions[currentQuestion].choices.forEach((choice, idx) => {
         const button = document.createElement('button');
         button.classList.add('answerBtn');
