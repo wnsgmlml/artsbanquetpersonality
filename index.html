@@ -24,6 +24,16 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Aubrey&family=Skranji:wght@400;700&display=swap" rel="stylesheet">
 
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4M0KDYKK1E"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4M0KDYKK1E');
+  </script>
+
   <!-- Custom CSS -->
   <style>
     body {
@@ -553,7 +563,7 @@
       document.querySelector('.resultDesc').innerText = result.description;
       
       // Set character image
-      const characterImg = document.querySelector('character-img');
+      const characterImg = document.querySelector('.character-img');
       characterImg.src = result.image;
       characterImg.alt = result.character;
     }
